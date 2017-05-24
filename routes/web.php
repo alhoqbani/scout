@@ -12,12 +12,32 @@
 */
 
 use App\Post;
+use Elasticsearch\ClientBuilder;
+
 
 Route::get('/', function () {
     
-    $posts = Post::search('made a snatch in the middle of the other')->get();
+    $posts = Post::all();
+    $client = ClientBuilder::create()->build();
+    echo Post::count();
+    
+//    foreach ($posts as $i => $post) {
+//        echo $post->title . '<hr>';
+//        $params = [
+//            'index' => 'post_index',
+//            'type' => 'post_type',
+//            'id' => $post->id,
+//            'body' => [
+//                'user_id' => $post->user_id,
+//                'title' => $post->title,
+//                'body' => $post->body,
+//            ],
+//        ];
+//        $response = $client->index($params);
+//        echo $response['created'] .'Number: ' . $i .'<br>';
+//    };
     
     
-    dd( $posts);
+    
 //    return view('welcome');
 });
