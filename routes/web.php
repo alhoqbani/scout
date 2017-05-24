@@ -11,6 +11,13 @@
 |
 */
 
+use App\Post;
+
 Route::get('/', function () {
-    return view('welcome');
+    
+    $posts = Post::search('made a snatch in the middle of the other')->get();
+    
+    
+    dd( $posts);
+//    return view('welcome');
 });
