@@ -14,7 +14,7 @@
 use App\Post;
 use Elasticsearch\ClientBuilder;
 
-
+Route::resource('Task', 'TaskController');
 Route::get('/', function () {
     
     $posts = Post::all();
