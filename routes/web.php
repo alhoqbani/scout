@@ -15,7 +15,16 @@ use App\Post;
 use Elasticsearch\ClientBuilder;
 
 Route::resource('Task', 'TaskController');
+Route::resource('/pdf', 'pdfController');
+Route::get('/mysql', 'MysqlController@index');
+Route::get('/word', 'WordController@index');
+Route::get('/maps', 'MapsController@index');
+Route::get('/search/search', 'SearchController@search');
+Route::resource('/search', 'SearchController');
+
 Route::get('/', function () {
+    
+    
     
     $posts = Post::all();
     $client = ClientBuilder::create()->build();
@@ -41,3 +50,7 @@ Route::get('/', function () {
     
 //    return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

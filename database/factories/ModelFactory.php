@@ -30,6 +30,7 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
     return [
         'title'   => $faker->realText(),
         'body'    => $faker->realText(1000),
+        'tags'    => $faker->word,
         'user_id' => function () use ($faker) {
             return factory(App\User::class)->create()->id;
         },
