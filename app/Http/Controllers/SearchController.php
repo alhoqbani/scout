@@ -23,9 +23,13 @@ class SearchController extends Controller
      */
     public function index()
     {
-        $q = request()->input('q');
-        $results = PostRepository::searchBody($q);
-        dump($results);
+        if (request()->has('q')) {
+            $q = request()->input('q');
+            
+            $results = $this->elasticSearch->matchFields(['name' => $q]);
+            $hits = $results['hits']['hits'];
+            return view('search.results', compact(['q', 'hits']));
+        }
         
         return view('search.index', compact('q'));
     }
@@ -38,14 +42,14 @@ class SearchController extends Controller
 //        return $this->elasticSearch->parameters(['q' => 'mary', 'type' => 'user']);
 //        return $this->elasticSearch->withExplanation()->parameters(['index' => '_all', 'type' => 'tweet', 'q' => 'tweet:elasticsearch']);
 //        return $this->elasticSearch->paginate(3, 2);
-        return $this->elasticSearch->getMapping('post_type');
+//        return $this->elasticSearch->getMapping('post_type');
 //        return $this->elasticSearch->analyze('This is to Test the standard analyzer, just testing');
 //        return $this->elasticSearch->analyze('بسم الله الرحمن الرحيم، وبعد، ', 'arabic');
 //        return $this->elasticSearch->matchFields(['tweet' => 'elasticsearch']);
 //        return $this->elasticSearch->withExplanation()->matchMultiFields('mary', [ "title", "body", "tweet", "name" ]);
 //        return $this->elasticSearch->explainThis($id = 'AVx9QM-1ggHgv1XUurI8', ['tweet' => 'elasticsearch']);
 //        return $this->elasticSearch->search('I beat');
-        return $this->elasticSearch->explainThis('12', 'I beat', 'us', 'tweet');
+//        return $this->elasticSearch->explainThis('12', 'I beat', 'us', 'tweet');
     }
     
     

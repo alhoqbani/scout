@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    @if($q)
+    @if(isset($q))
 <hr>
     <div class="container">
         <div class="row">

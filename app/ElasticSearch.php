@@ -16,8 +16,20 @@ class ElasticSearch
     public function __construct()
     {
         $this->client = ClientBuilder::create()->build();
-        $this->params['index'] = 'posts';
-        $this->params['type'] = 'post_type';
+    }
+    
+    public function setIndex($index)
+    {
+        $this->params['index'] = $index;
+        
+        return $this;
+    }
+    
+    public function setType($type)
+    {
+        $this->params['type'] = $type;
+        
+        return $this;
     }
     
     /**
@@ -95,6 +107,7 @@ class ElasticSearch
         $this->params['id'] = $id;
 //        $this->params['body']['query']['match'] = $query;
         $this->params['body']['query']['match']['_all'] = $query;
+
 //        dd($this->params);
         return $this->client->explain($this->params);
     }
