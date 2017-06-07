@@ -27,15 +27,28 @@ class UdemySearchController extends Controller
             $variables['page'] = $page;
             $variables['q'] = $q;
             $variables['from'] = $from;
+            
+            $queryArray = [
+                'bool' => [
+                    'must' => [],
+                ],
+            ];
+            $tokens = explode(' ', $q);
+            foreach ($tokens as $token) {
+                $queryArray['bool']['must'][] = [
+                    'match' => [
+                        'name' => [
+                            'query'     => $token,
+                            'fuzziness' => 'AUTO',
+                        ],
+                    ],
+                ];
+            }
             $params = [
                 'index' => 'commerce',
                 'type'  => 'products',
                 'body'  => [
-                    'query' => [
-                        'match' => [
-                            'name' => $q,
-                        ],
-                    ],
+                    'query' => $queryArray,
                     'size'  => self::RESULTS_PER_PAGE,
                     'from'  => $from,
                 ],
