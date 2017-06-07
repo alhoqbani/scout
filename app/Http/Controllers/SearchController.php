@@ -24,10 +24,7 @@ class SearchController extends Controller
     public function index()
     {
         if (request()->has('q')) {
-            $q = request()->input('q');
             
-            $results = $this->elasticSearch->matchFields(['name' => $q]);
-            $hits = $results['hits']['hits'];
             return view('search.results', compact(['q', 'hits']));
         }
         

@@ -21,6 +21,7 @@ Route::get('/word', 'WordController@index');
 Route::get('/maps', 'MapsController@index');
 Route::get('/search/search', 'SearchController@search');
 Route::resource('/search', 'SearchController');
+Route::resource('/udemy', 'UdemySearchController');
 
 Route::get('/', function () {
     
