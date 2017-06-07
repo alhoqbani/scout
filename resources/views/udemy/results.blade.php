@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -19,24 +20,43 @@
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2">
                     <p class="text-center">Search Term: <em>{{$variables['q']}}</em></p>
-                    <p>Displaying: {{$variables['from'] + 1 .' to ' . $variables['to'] . ' of ' . $variables['total']}} </p>
+                    <p>
+                        Displaying: {{$variables['from'] + 1 .' to ' . $variables['to'] . ' of ' . $variables['total']}} </p>
                 </div>
             </div>
             <hr>
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <p class="text-primary h4">Price Rnages:
+                        @foreach($price_ranges as $price_range)
+                            <a href="{{route('udemy.index', request()->input())}}&startprice={{$price_range['from']}}&endprice={{$price_range['to']}}"
+                                    {{--"{{$items->url($items->currentPage())}}--}}
+
+                            >{{$price_range['from']}}
+                                - {{$price_range['to']}}
+                                <span class="label label-info">{{$price_range['doc_count']}}</span>
+                            </a> /
+                        @endforeach
+                    </p>
+                </div>
+            </div>
+            <hr>
+            <br><br>
             @if(!empty($variables['hits']))
                 <div class="row">
                     <div class="col-sm-8 col-sm-offset-2">
                         @foreach($items as $hit)
                             <div class="panel panel-success">
                                 <div class="panel panel-heading">
-                                    {{$hit['_source']['name']}} - <span class="pull-right">{{$hit['_source']['price']}}</span>
+                                    {{$hit['_source']['name']}} - <span
+                                            class="pull-right">{{$hit['_source']['price']}}</span>
                                 </div>
                                 <div class="panel panel-body">
                                     {{$hit['_source']['description']}}
                                 </div>
                             </div>
                         @endforeach
-                        {{ $items->links()  }}
+                        {{ $items->links()}}
                     </div>
                 </div>
             @elseif(isset($variables['hits']))
