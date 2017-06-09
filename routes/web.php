@@ -21,6 +21,8 @@ Route::get('/word', 'WordController@index');
 Route::get('/maps', 'MapsController@index');
 Route::get('/search/search', 'SearchController@search');
 Route::resource('/search', 'SearchController');
+Route::get('/elastic/api', 'ElasticController@api');
+Route::resource('/elastic', 'ElasticController');
 Route::resource('/udemy', 'UdemySearchController');
 
 Route::get('/', function () {

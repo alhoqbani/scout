@@ -32,6 +32,26 @@ class ElasticSearch
         return $this;
     }
     
+    public function search($index = null, $type = null)
+    {
+        $this->setIndex($index);
+        $this->setType($type);
+        
+        return $this;
+    }
+    
+    public function addQuery(array $query)
+    {
+        $this->params['body']['query'] = $query;
+        
+        return $this;
+    }
+    
+    public function get()
+    {
+        return $this->client->search($this->params);
+    }
+    
     /**
      * returns all documents in all indices in the cluster
      *
@@ -42,7 +62,7 @@ class ElasticSearch
         return $this->client->search();
     }
     
-    public function search($query)
+    public function matchAll($query)
     {
         $this->params['index'] = '_all';
         $this->params['type'] = null;
@@ -127,6 +147,14 @@ class ElasticSearch
         
         return $this->client->search($this->params);
     }
+    
+    public function addParamas(array $params)
+    {
+        $this->params = array_merge($this->params, $params);
+        
+        return $this;
+    }
+    
     
     public function paginate($size, $from)
     {
