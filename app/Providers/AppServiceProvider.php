@@ -2,14 +2,15 @@
 
 namespace App\Providers;
 
-use App\Observers\PostObserver;
-use App\Post;
+use App\Support\MySqlSearchEngine;
 use Elasticsearch\Client;
 use Elasticsearch\ClientBuilder;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Scout\EngineManager;
 
 class AppServiceProvider extends ServiceProvider
 {
+    
     /**
      * Bootstrap any application services.
      *
@@ -17,9 +18,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Post::observe(PostObserver::class);
+//        Post::observe(PostObserver::class);
+        
+        resolve(EngineManager::class)->extend('mysql', function () {
+            return new MySqlSearchEngine;
+        });
+        
     }
-
+    
     /**
      * Register any application services.
      *
@@ -28,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(Client::class, function () {
-           return ClientBuilder::create()->build();
+            return ClientBuilder::create()->build();
         });
     }
 }

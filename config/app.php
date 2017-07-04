@@ -167,7 +167,9 @@ return [
          * Package Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
-        
+        Laravel\Scout\ScoutServiceProvider::class,
+        Cornford\Googlmapper\MapperServiceProvider::class,
+        DamianTW\MySQLScout\Providers\MySQLScoutServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -176,9 +178,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Laravel\Scout\ScoutServiceProvider::class,
-        Cornford\Googlmapper\MapperServiceProvider::class,
-//        Elasticquent\ElasticquentServiceProvider::class,
+
 
 
 
