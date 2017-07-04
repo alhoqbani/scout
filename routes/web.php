@@ -28,11 +28,10 @@ Route::resource('/udemy', 'UdemySearchController');
 Route::get('/', function () {
     
     
-    
     $posts = Post::all();
     $client = ClientBuilder::create()->build();
     echo Post::count();
-    
+
 //    foreach ($posts as $i => $post) {
 //        echo $post->title . '<hr>';
 //        $params = [
@@ -48,9 +47,8 @@ Route::get('/', function () {
 //        $response = $client->index($params);
 //        echo $response['created'] .'Number: ' . $i .'<br>';
 //    };
-    
-    
-    
+
+
 //    return view('welcome');
 });
 

@@ -178,8 +178,10 @@ return [
         App\Providers\RouteServiceProvider::class,
         Laravel\Scout\ScoutServiceProvider::class,
         Cornford\Googlmapper\MapperServiceProvider::class,
-    
-    
+//        Elasticquent\ElasticquentServiceProvider::class,
+
+
+
     ],
     
     /*
@@ -229,8 +231,10 @@ return [
         'Validator'    => Illuminate\Support\Facades\Validator::class,
         'View'         => Illuminate\Support\Facades\View::class,
         'Mapper'       => Cornford\Googlmapper\Facades\MapperFacade::class,
-    
-    
+//        'Es' => Elasticquent\ElasticquentElasticsearchFacade::class,
+
+
+
     ],
 
 ];
