@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Post;
-use Illuminate\Http\Request;
 
 class MysqlController extends Controller
 {
@@ -20,10 +19,15 @@ class MysqlController extends Controller
     
     public function index(Post $post)
     {
-        dd($post->search('Hamoud')->paginate(1));
-        
-        
-        
+        $sql = "SELECT id, title, MATCH (title,text) AGAINST
+    ('الأضرار'
+    IN NATURAL LANGUAGE MODE) AS score
+    FROM articles WHERE MATCH (title,text) AGAINST
+    ('الأضرار'
+    IN NATURAL LANGUAGE MODE)";
+        dd($post->search('Hamoud')->get(1));
+
+
 //        $stmt = $this->db->query('SELECT * FROM Country');
 //        while($conntry = $stmt->fetchObject()) {
 //            echo $conntry->Name . ' <br> ';
