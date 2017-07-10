@@ -14,7 +14,7 @@
 use App\Post;
 use Elasticsearch\ClientBuilder;
 
-Route::resource('tasks', 'TaskController');
+Route::resource('tasks', 'TasksController');
 Route::resource('posts', 'PostsController');
 Route::resource('/pdf', 'pdfController');
 Route::get('/mysql', 'MysqlController@index');
