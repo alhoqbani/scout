@@ -1,14 +1,14 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">VueApp</div>
+            <div class="col-md-8">
 
-                    <div class="panel-body">
-                        VueApp
-                    </div>
-                </div>
+                <router-link :to="{name:'Home'}">Home</router-link>
+                <router-link :to="{name:'Users'}">Users</router-link>
+                <router-link :to="{name:'Posts'}">Posts</router-link>
+                <router-link :to="{name:'Articles'}">Articles</router-link>
+
+                <router-view></router-view>
             </div>
         </div>
     </div>

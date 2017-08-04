@@ -1,20 +1,29 @@
 <template>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Post Management</div>
-
-                    <div class="panel-body">
-                        Posts
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="col-xs-12">
+        <ul>
+            <li v-for="post in posts"><a href="">{{post.title}}</a></li>
+        </ul>
     </div>
 </template>
 
 <script>
+    import axios from 'axios';
+
     export default {
+        name: 'posts',
+        data() {
+            return {
+                posts: []
+            }
+        },
+        created() {
+            this.fetchPosts();
+        },
+        methods: {
+            fetchPosts() {
+                axios.get('posts')
+                    .then(({data}) => this.posts = data)
+            }
+        }
     }
 </script>
