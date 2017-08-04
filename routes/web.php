@@ -26,6 +26,10 @@ Route::get('/elastic/api', 'ElasticController@api');
 Route::resource('/elastic', 'ElasticController');
 Route::resource('/udemy', 'UdemySearchController');
 
+Route::get('vue', function () {
+   return view('vue.index');
+});
+
 Route::get('/', function () {
     
     
